@@ -1,6 +1,36 @@
 body {
+  --main-red: #a70038;
+  --main-brown: #451b1b;
+  --light-brown: #5e3131;
+  --light-text: white;
+  --less-light-text: #ffffffb9;
+  background: var(--main-brown);
+}
+
+* {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
   box-sizing: border-box;
+  outline: none;
+  text-decoration: none;
+  color: var(--light-text);
+}
+
+input, button {
+  padding: 0.5rem 0.7rem;
+  border-radius: 0.2rem;
+  border: none;
+  font-size: 1rem;
+  background: var(--main-red);
+  width: 100%;
+  text-align: center;
+}
+
+input::placeholder {
+  color: var(--less-light-text);
+}
+
+button {
+  cursor: pointer;
 }
