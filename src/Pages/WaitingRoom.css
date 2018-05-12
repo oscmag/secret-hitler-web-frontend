@@ -1,0 +1,30 @@
+#waiting-room {
+  display: flex;
+  height: 100%;
+}
+
+#waiting-room span {
+  font-weight: lighter;
+}
+
+#waiting-room img {
+  width: 7rem;
+}
+
+#waiting-room .game-info {
+  text-align: center;
+  background: var(--light-brown);
+  width: 25%;
+  max-width: 20rem;
+  padding: 1rem;
+  display: grid;
+  grid-gap: 2rem;
+  justify-items: center;
+  grid-auto-rows: min-content;
+}
+
+@media screen and (max-width: 700px) {
+  .sidebar {
+    padding: 0.5rem;
+  }
+}
