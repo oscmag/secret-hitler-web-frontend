@@ -1,7 +1,7 @@
 import {createStore, applyMiddleware, compose} from 'redux';
 
 import reducers from './reducers';
-import backendCall from './middlewares/backendCall';
+import backendCall from './socket.middleware';
 import {loadState, saveState} from './localStorage';
 
 const persistedState = loadState();
