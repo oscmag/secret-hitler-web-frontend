@@ -1,18 +1,38 @@
 {
-  "name": "webclient",
-  "version": "0.1.0",
-  "private": true,
+  "name": "secret-hitler-web-frontend",
+  "version": "1.0.0",
+  "description": "React-Redux web implementation of the hidden identity party game 'Secret Hitler'.",
+  "main": "index.js",
+  "scripts": {
+    "start": "PORT=3001 react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JanoshRiebesell/secret-hitler-web-frontend.git"
+  },
+  "keywords": [
+    "secret",
+    "hitler",
+    "backend",
+    "game",
+    "socket.io"
+  ],
+  "author": "Oscar Magnusson, Luciu Joncourt, Kryshlynn Florante, Diego Hernandez, Janosh Riebesell",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JanoshRiebesell/secret-hitler-web-frontend/issues"
+  },
+  "homepage": "https://github.com/JanoshRiebesell/secret-hitler-web-frontend#readme",
   "dependencies": {
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-redux": "^5.0.7",
+    "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.4",
-    "redux": "^4.0.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "redux": "^4.0.0",
+    "socket.io-client": "^2.1.0"
   }
 }
