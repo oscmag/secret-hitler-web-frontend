@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { showRules, socketEvent } from '../redux/actions';
 
 import PlayerList from '../Components/PlayerList';
+import Rules from '../Components/Rules';
 import './WaitingRoom.css'
 
 class WaitingRoom extends React.Component {
@@ -10,7 +12,7 @@ class WaitingRoom extends React.Component {
     this.props.saveUserInput({
       [event.target.name]: event.target.value
     });
-  }
+  };
 
   copyToClipboard = () => {
     const el = document.createElement('textarea');
@@ -21,22 +23,30 @@ class WaitingRoom extends React.Component {
     document.body.removeChild(el);
   };
 
+  handleMetaClick = (event) => {
+    const { user, game } = this.props;
+    this.props.socketEvent(event.target.name + 'Game', {user, gameId: game.id});
+    if (event.target.name === 'start') this.props.history.push('/play');
+    if (event.target.name === 'leave') this.props.history.push('/');
+  };
+
   render() {
-    const {game} = this.props;
-    console.log(game.initiator);
+    const { game } = this.props;
     const numPlayers = game.playerList && game.playerList.length;
     return (
       <div id='waiting-room'>
         <div className='game-info'>
-          <img src={`./assets/avatars/${game.initiator.avatar}.png`} alt='user avatar'/>
-          <h2><span>Game Initiator</span> {game.initiator.name}</h2>
-          <button onClick={this.copyToClipboard}>Copy game id to clipboard</button>
-          <p>Share the game id with your friends to let them join.</p>
-          <p>{numPlayers} player{numPlayers === 1 ? '' : 's'}, minimum 5</p>
-          <button onClick={() => this.props.startGame()} disabled={numPlayers < 5}>Start Game</button>
-          <button onClick={() => this.props.leaveGame()}>Leave Game</button>
+          {game.initiator && <img src={`./assets/avatars/${game.initiator.avatar}.png`} alt='user avatar'/>}
+          {game.initiator && <h2>Game Initiator {game.initiator.name}</h2>}
+          <button onClick={this.copyToClipboard} disabled={!game.id}>Copy game id to clipboard</button>
+          <p>Share the game id with your friends so they can join.</p>
+          {numPlayers && <p>{numPlayers} player{numPlayers === 1 ? '' : 's'}, minimum 5</p>}
+          <button onClick={this.handleMetaClick} disabled={!numPlayers || numPlayers < 5}>Start Game</button>
+          <button onClick={this.handleMetaClick}>Leave Game</button>
+          <button onClick={this.props.showRules}>Rules</button>
         </div>
-        <PlayerList playerList={game.playerList}/>
+        {game.playerList && <PlayerList playerList={game.playerList}/>}
+        <Rules/>
       </div>
     );
   }
@@ -45,11 +55,13 @@ class WaitingRoom extends React.Component {
 const mapStateToProps = (state) => {
   return {
     game: state.game,
+    user: state.user,
   };
 };
 
 const mapDispatchToProps = (dispatch) => ({
-
+  showRules: () => dispatch(showRules()),
+  socketEvent: (message, payload) => dispatch(socketEvent(message, payload)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(WaitingRoom);

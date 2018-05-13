@@ -1,4 +1,6 @@
 body {
+  --main-dark: #2c2c2c;
+  --main-gray: #b4b4b4;
   --main-red: #a70038;
   --main-brown: #451b1b;
   --light-brown: #5e3131;
@@ -10,7 +12,7 @@ body {
 * {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'NaziTypewriterRegular';
   box-sizing: border-box;
   outline: none;
   text-decoration: none;
@@ -32,5 +34,10 @@ input::placeholder {
 }
 
 button {
+  background: var(--main-brown);
   cursor: pointer;
+}
+
+button:disabled {
+  background: var(--main-gray);
 }

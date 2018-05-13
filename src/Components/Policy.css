@@ -1,0 +1,12 @@
+.policy {
+  height: 100%;
+  border-radius: 0.2rem;
+}
+
+.policy-liberal {
+  background: lightblue;
+}
+
+.policy-fascist {
+  background: brown;
+}

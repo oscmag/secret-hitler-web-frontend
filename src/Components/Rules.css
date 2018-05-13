@@ -1,0 +1,20 @@
+.rules-backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.rules {
+  width: 70%;
+  height: 70%;
+  overflow: scroll;
+}
+
+.rules * {
+  margin-bottom: 1rem;
+}
