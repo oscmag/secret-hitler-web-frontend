@@ -1,0 +1,23 @@
+#page-not-found {
+  margin: 1rem auto;
+  padding: 2rem;
+  max-width: 900px;
+  background: var(--very-light-background);
+  border-radius: 5px;
+  text-align: center;
+}
+
+#page-not-found h1 {
+  margin-bottom: 1rem;
+}
+
+#page-not-found h3 {
+  margin-top: 1rem;
+  text-align: right;
+}
+
+#page-not-found img {
+  margin-bottom: 1rem;
+  width: 30rem;
+  border: 2px solid var(--main-dark);
+}
