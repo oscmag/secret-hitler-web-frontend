@@ -1,11 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import LandingPage from './Pages/Landing';
 import WaitingRoom from './Pages/WaitingRoom';
 import './App.css';
 
-export default class App extends React.Component {
+class App extends React.Component {
+
+  componentDidMount() {
+    if (window.location.pathname !== '/' && !this.props.game.id) window.location = '/';
+  }
+
   render() {
     return (
       <Router>
@@ -19,3 +25,11 @@ export default class App extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    game: state.game,
+  };
+};
+
+export default connect(mapStateToProps)(App);
