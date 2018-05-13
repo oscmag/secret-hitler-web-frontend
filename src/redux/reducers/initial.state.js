@@ -4,6 +4,8 @@ export default {
   app: {
     gameId: '',
     showRules: false,
+    serverAlert: '',
+    serverError: '',
   },
   game: {},
   user: {

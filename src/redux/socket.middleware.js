@@ -3,7 +3,7 @@ import io from 'socket.io-client';
 const socket = store => next => action => {
   if(!action.socket) return next(action);
 
-  const {message, payload} = action.socket;
+  const { message, payload } = action.socket;
 
   const socket = io(process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000');
 
@@ -14,11 +14,18 @@ const socket = store => next => action => {
     })
   });
 
-  socket.on('exception', err => {
-    console.error(err);
+  socket.on('exception', error => {
+    console.error(error);
     store.dispatch({
-      type: action.type + '_failure',
-      err,
+      type: 'server_error',
+      error,
+    })
+  });
+
+  socket.on('alert', alert => {
+    store.dispatch({
+      type: 'server_alert',
+      alert,
     })
   });
 
