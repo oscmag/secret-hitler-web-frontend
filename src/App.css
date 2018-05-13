@@ -3,3 +3,26 @@
   flex-direction: column;
   height: 100vh;
 }
+
+.server-alert {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.5rem 1rem;
+  background: var(--main-red);
+  margin-top: 0.5rem;
+  border-radius: 0.2rem;
+  animation: FadeAnimation 1s ease-in 2s forwards;
+}
+
+@keyframes FadeAnimation {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
