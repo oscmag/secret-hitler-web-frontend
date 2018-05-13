@@ -8,21 +8,21 @@ const socket = store => next => action => {
   const socket = io(process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000');
 
   socket.on('metaChannel', game => {
-    if (game.id) {
-      store.dispatch({
-        type: action.type + '_success',
-        game,
-      })
-    } else {
-      console.error(game);
-      store.dispatch({
-        type: action.type + '_failure',
-        game,
-      })
-    }
+    store.dispatch({
+      type: action.type + '_success',
+      game,
+    })
   });
 
-  socket.emit('metaChannel', message, payload, res => console.log(res));
+  socket.on('exception', err => {
+    console.error(err);
+    store.dispatch({
+      type: action.type + '_failure',
+      err,
+    })
+  });
+
+  socket.emit('metaChannel', message, payload);
 
   next({
     ...action,
