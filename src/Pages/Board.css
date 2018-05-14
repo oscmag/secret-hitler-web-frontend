@@ -11,14 +11,16 @@
   margin: 1rem 1rem 1rem 0;
   flex: 4;
   display: grid;
-  grid-gap: 1rem;
+  grid-gap: 0.5rem;
+  grid-auto-rows: min-content;
 }
 
-#board .board-liberal, #board .board-fascist {
+#board .liberal-board, #board .fascist-board {
   flex: 1;
   display: flex;
   flex-direction: column;
-  border: 2px solid var(--main-red);
+  border-top: 2px solid var(--main-red);
+  border-bottom: 2px solid var(--main-red);
   border-radius: 0.2rem;
   text-align: center;
 }
@@ -26,7 +28,47 @@
 #board .policies {
   flex: 1;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
   grid-gap: 0.5rem;
   padding: 0.5rem;
+}
+
+#board .liberal-policies {
+  grid-template-columns: 0.5fr repeat(5, 1fr) 0.5fr;
+}
+
+#board .liberal-policies::before {
+  content: "";
+}
+
+#board .fascist-policies {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+#board .election-tracker {
+  height: 2rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#board .election-counter {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  border: 1px solid var(--main-light);
+}
+
+#board .election-counter.active {
+  background: var(--main-red);
+}
+
+#board .rules-settings {
+  margin: 1rem 1rem 0 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+}
+
+#board .rules-settings button {
+  background: var(--main-red);
 }

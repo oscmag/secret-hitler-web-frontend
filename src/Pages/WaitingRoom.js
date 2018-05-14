@@ -26,7 +26,7 @@ class WaitingRoom extends React.Component {
   handleMetaClick = (event) => {
     const { user, game } = this.props;
     this.props.socketEvent(event.target.name + 'Game', {user, gameId: game.id});
-    if (event.target.name === 'start') this.props.history.push('/play');
+    if (event.target.name === 'start') this.props.history.push('/board');
     if (event.target.name === 'leave') this.props.history.push('/');
   };
 
@@ -41,8 +41,8 @@ class WaitingRoom extends React.Component {
           <button onClick={this.copyToClipboard} disabled={!game.id}>Copy game id to clipboard</button>
           <p>Share the game id with your friends so they can join.</p>
           {numPlayers && <p>{numPlayers} player{numPlayers === 1 ? '' : 's'}, minimum 5</p>}
-          <button onClick={this.handleMetaClick} disabled={!numPlayers || numPlayers < 5}>Start Game</button>
-          <button onClick={this.handleMetaClick}>Leave Game</button>
+          <button name='start' onClick={this.handleMetaClick} disabled={!numPlayers || numPlayers < 5}>Start Game</button>
+          <button name='leave' onClick={this.handleMetaClick}>Leave Game</button>
           <button onClick={this.props.showRules}>Rules</button>
         </div>
         {game.playerList && <PlayerList playerList={game.playerList}/>}
