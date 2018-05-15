@@ -2,10 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import LandingPage from './Pages/Landing';
-import WaitingRoom from './Pages/WaitingRoom';
-import Board from './Pages/Board';
-import PageNotFound from './Pages/PageNotFound';
+import LandingPage from './pages/Landing';
+import WaitingRoom from './pages/WaitingRoom';
+import Board from './pages/Board';
+import PageNotFound from './pages/PageNotFound';
 import './App.css';
 
 class App extends React.Component {
