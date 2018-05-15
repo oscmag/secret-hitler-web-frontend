@@ -1,0 +1,25 @@
+#waiting-room {
+  display: flex;
+  height: 100%;
+}
+
+#waiting-room img {
+  width: 7rem;
+}
+
+#waiting-room .game-info {
+  text-align: center;
+  background: var(--light-brown);
+  width: 25%;
+  min-width: 15rem;
+  padding: 1rem;
+  display: grid;
+  grid-gap: 2rem;
+  justify-items: center;
+  grid-auto-rows: min-content;
+  overflow: scroll;
+}
+
+#waiting-room .game-info button {
+  width: 100%;
+}

@@ -1,0 +1,18 @@
+.rules {
+  display: grid;
+  grid-gap: 1rem;
+  width: 70vw;
+  height: 70vh;
+  overflow: scroll;
+}
+
+.rules ul {
+  margin-left: 1rem;
+}
+
+@media (max-width: 600px) {
+  .rules {
+    width: 100vw;
+    height: 100vh;
+  }
+}
