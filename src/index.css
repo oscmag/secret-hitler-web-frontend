@@ -26,7 +26,6 @@ input, button {
   border: none;
   font-size: 1rem;
   background: var(--main-red);
-  width: 100%;
   text-align: center;
 }
 
@@ -35,7 +34,6 @@ input::placeholder {
 }
 
 button {
-  background: var(--main-brown);
   cursor: pointer;
 }
 

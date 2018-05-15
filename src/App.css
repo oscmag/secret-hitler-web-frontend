@@ -12,10 +12,10 @@
   background: var(--main-red);
   margin-top: 0.5rem;
   border-radius: 0.2rem;
-  animation: FadeAnimation 1s ease-in 2s forwards;
+  animation: Fade 1s ease-in 2s forwards;
 }
 
-@keyframes FadeAnimation {
+@keyframes Fade {
   0% {
     opacity: 1;
     visibility: visible;

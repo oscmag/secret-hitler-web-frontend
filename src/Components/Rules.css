@@ -1,19 +1,18 @@
-.rules-backdrop {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .rules {
-  width: 70%;
-  height: 70%;
+  display: grid;
+  grid-gap: 1rem;
+  width: 70vw;
+  height: 70vh;
   overflow: scroll;
 }
 
-.rules * {
-  margin-bottom: 1rem;
+.rules ul {
+  margin-left: 1rem;
+}
+
+@media (max-width: 600px) {
+  .rules {
+    width: 100vw;
+    height: 100vh;
+  }
 }
