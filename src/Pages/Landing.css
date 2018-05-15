@@ -25,6 +25,7 @@
 }
 
 #landing-page button, #landing-page input {
+  width: 100%;
   max-width: 15rem;
 }
 
@@ -44,6 +45,7 @@
 }
 
 .meta-buttons {
+  margin: 1rem;
   text-align: center;
   display: grid;
   grid-gap: 2rem;

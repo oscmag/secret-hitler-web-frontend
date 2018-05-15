@@ -19,3 +19,7 @@
   grid-auto-rows: min-content;
   overflow: scroll;
 }
+
+#waiting-room .game-info button {
+  width: 100%;
+}
