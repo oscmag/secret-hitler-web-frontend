@@ -1,5 +1,6 @@
-export const showRules = () => ({
-  type: 'toggle_show_rules',
+export const toggleModal = (name) => ({
+  type: 'toggle_modal',
+  name,
 });
 
 export const updateGameId = (input) => ({
