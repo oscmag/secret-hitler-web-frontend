@@ -1,7 +1,7 @@
 import React from 'react';
 
-import FascistPolicy from './Material/policy-fascist.svg';
-import LiberalPolicy from './Material/policy-liberal.svg';
+import FascistPolicy from './material/policy-fascist.svg';
+import LiberalPolicy from './material/policy-liberal.svg';
 import './Policy.css';
 
 export default (props) => {

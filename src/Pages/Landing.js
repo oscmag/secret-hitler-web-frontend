@@ -31,7 +31,10 @@ class LandingPage extends React.Component {
 
   handleMetaClick = (event) => {
     const { app, user } = this.props;
-    this.props.socketEvent(event.target.name + 'Game', {user, gameId: app.gameId});
+    this.props.socketEvent({
+      type: event.target.name + 'Game',
+      payload: {user, gameId: app.gameId}
+    });
     this.props.history.push('/waiting-room');
   };
 
@@ -94,7 +97,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  socketEvent: (message, payload) => dispatch(socketEvent(message, payload)),
+  socketEvent: (data) => dispatch(socketEvent(data)),
   updateGameId: (input) => dispatch(updateGameId(input)),
   updateUser: (input) => dispatch(updateUser(input)),
 })

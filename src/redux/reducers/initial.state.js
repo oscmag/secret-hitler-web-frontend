@@ -3,9 +3,13 @@ const prefilledUser = false;
 export default {
   app: {
     gameId: '',
-    showRules: false,
     serverAlert: '',
     serverError: '',
+    modals: {
+      rules: false,
+      settings: false,
+      showRoles: false,
+    }
   },
   game: {},
   user: {

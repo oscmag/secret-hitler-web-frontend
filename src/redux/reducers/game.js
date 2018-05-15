@@ -1,6 +1,6 @@
 import initialAppState from './initial.state';
 
 export const gameReducer = (state = initialAppState.game, action) => {
-  if (action.type === 'socket_event_success') return action.game;
+  if (action.type === 'game_received') return action.payload;
   return state;
 };

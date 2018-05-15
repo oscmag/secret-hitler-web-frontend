@@ -1,10 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { showRules } from '../redux/actions';
+import { toggleModal } from '../redux/actions';
 
-import PlayerList from '../Components/PlayerList';
-import Policy from '../Components/Policy';
-import Rules from '../Components/Rules';
+import Modal from '../components/Modal';
+import PlayerList from '../components/PlayerList';
+import Policy from '../components/Policy';
+import Rules from '../components/Rules';
+import ShowRoles from '../components/player.actions/ShowRoles';
 import './Board.css'
 
 class Board extends React.Component {
@@ -16,14 +18,13 @@ class Board extends React.Component {
   };
 
   render() {
-    const { game } = this.props;
+    const { game, modals, user } = this.props;
     return (
       <div id='board'>
         <div>
-          <Rules/>
           <div className='rules-settings'>
-            <button onClick={this.props.showRules}>Rules</button>
-            <button onClick={this.props.showRules}>Settings</button>
+            <button name='rules' onClick={this.props.toggleModal} disabled={modals.rules}>Rules</button>
+            <button name='settings' onClick={this.props.toggleModal}>Settings</button>
           </div>
           {game.playerList && <PlayerList playerList={game.playerList}/>}
         </div>
@@ -44,9 +45,9 @@ class Board extends React.Component {
             {[...(Array(4))].map((counter, index) => (
               <React.Fragment key={index}>
                 <div className={[
-                'election-counter',
-                2 >= index ? 'active' : null,
-              ].join(' ')}></div>
+                  'election-counter',
+                  2 >= index ? 'active' : null,
+                ].join(' ')}>{index + 1}</div>
               {index !== 3 && <div>&rarr;</div>}
               </React.Fragment>
             ))}
@@ -64,7 +65,12 @@ class Board extends React.Component {
             </div>
           </div>
         </div>
-        <Rules/>
+        <Modal name='rules' button='okay'>
+          <Rules/>
+        </Modal>
+        <Modal name='showRoles' button='close'>
+          <ShowRoles player={game.playerList.find(player => player.user.id === user.id)}/>
+        </Modal>
       </div>
     );
   }
@@ -73,11 +79,13 @@ class Board extends React.Component {
 const mapStateToProps = (state) => {
   return {
     game: state.game,
+    modals: state.app.modals,
+    user: state.user,
   };
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  showRules: () => dispatch(showRules()),
+  toggleModal: (event) => dispatch(toggleModal(event.target.name)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Board);

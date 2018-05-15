@@ -3,10 +3,6 @@
   height: 100%;
 }
 
-#board .player-list {
-  min-width: 15rem;
-}
-
 #board .board {
   margin: 1rem 1rem 1rem 0;
   flex: 4;
@@ -49,9 +45,13 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  white-space: nowrap;
 }
 
 #board .election-counter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 2rem;
   width: 2rem;
   border-radius: 50%;
@@ -67,8 +67,4 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 1rem;
-}
-
-#board .rules-settings button {
-  background: var(--main-red);
 }
