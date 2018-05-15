@@ -2,10 +2,21 @@ import initialAppState from './initial.state';
 
 export const appReducer = (state = initialAppState.app, action) => {
   switch (action.type) {
-    case 'toggle_show_rules':
+    case 'toggle_modal':
     return {
       ...state,
-      showRules: !state.showRules,
+      modals: {
+        ...state.modals,
+        [action.name]: !state.modals[action.name],
+      }
+    };
+    case 'data_received':
+    return {
+      ...state,
+      modals: {
+        ...state.modals,
+        [action.payload.game.message]: true,
+      }
     };
     case 'update_game_id':
     return {
