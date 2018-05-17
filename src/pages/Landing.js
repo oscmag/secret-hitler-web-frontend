@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import uuid from 'uuid/v4';
 
-import { socketEvent, updateGameId, updateUser } from '../redux/actions';
+import { socketEmit, updateGameId, updateUser } from '../redux/actions';
 import './Landing.css'
 
 class LandingPage extends React.Component {
@@ -31,7 +31,7 @@ class LandingPage extends React.Component {
 
   handleMetaClick = (event) => {
     const { app, user } = this.props;
-    this.props.socketEvent({
+    this.props.socketEmit({
       type: event.target.name + 'Game',
       payload: {user, gameId: app.gameId}
     });
@@ -97,7 +97,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  socketEvent: (data) => dispatch(socketEvent(data)),
+  socketEmit: (data) => dispatch(socketEmit(data)),
   updateGameId: (input) => dispatch(updateGameId(input)),
   updateUser: (input) => dispatch(updateUser(input)),
 })

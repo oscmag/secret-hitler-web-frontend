@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { toggleModal, socketEvent } from '../redux/actions';
+import { toggleModal, socketEmit } from '../redux/actions';
 
 import PlayerList from '../components/PlayerList';
 import Rules from '../components/Rules';
@@ -25,8 +25,8 @@ class WaitingRoom extends React.Component {
   };
 
   handleMetaClick = (event) => {
-    const { user, game, socketEvent, history } = this.props;
-    socketEvent({
+    const { user, game, socketEmit, history } = this.props;
+    socketEmit({
       type: event.target.name + 'Game',
       payload: {user, gameId: game.id}
     });
@@ -45,7 +45,7 @@ class WaitingRoom extends React.Component {
           <button onClick={this.copyToClipboard} disabled={!game.id}>Copy game id to clipboard</button>
           <p>Share the game id with your friends so they can join.</p>
           {numPlayers && <p>{numPlayers} player{numPlayers === 1 ? '' : 's'}, minimum 5</p>}
-          {user.id === game.initiator.id &&
+          {user && game.initiator && user.id === game.initiator.id &&
             <button name='start' onClick={this.handleMetaClick}
               disabled={!numPlayers || numPlayers < 5}
             >Start Game</button>}
@@ -71,7 +71,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
   toggleModal: (event) => dispatch(toggleModal(event.target.name)),
-  socketEvent: (data) => dispatch(socketEvent(data)),
+  socketEmit: (data) => dispatch(socketEmit(data)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(WaitingRoom);
