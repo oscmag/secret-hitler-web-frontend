@@ -1,4 +1,4 @@
-export const socketEvent = (data) => ({
-  type: 'socket_event',
+export const socketEmit = (data) => ({
+  type: 'socket_emit',
   socket: data,
 });
