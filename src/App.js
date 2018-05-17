@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Router, Switch, Route } from 'react-router-dom';
 
 import LandingPage from './pages/Landing';
 import WaitingRoom from './pages/WaitingRoom';
 import Board from './pages/Board';
 import PageNotFound from './pages/PageNotFound';
 import './App.css';
+import history from './redux/history';
 
 class App extends React.Component {
 
@@ -16,7 +17,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <Router>
+      <Router history={history}>
         <div id='app'>
           {(this.props.app.serverError || this.props.app.serverAlert) &&
           <div className='server-alert'>
