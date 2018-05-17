@@ -1,6 +1,6 @@
-import initialAppState from './initial.state';
+import initialAppState from './initialState';
 
-export const appReducer = (state = initialAppState.app, action) => {
+export const app = (state = initialAppState.app, action) => {
   switch (action.type) {
     case 'toggle_modal':
     return {
@@ -10,14 +10,14 @@ export const appReducer = (state = initialAppState.app, action) => {
         [action.name]: !state.modals[action.name],
       }
     };
-    case 'data_received':
-    return {
+    case 'game_received':
+    return action.payload.message ? {
       ...state,
       modals: {
         ...state.modals,
-        [action.payload.game.message]: true,
+        [action.payload.message]: true,
       }
-    };
+    } : state;
     case 'update_game_id':
     return {
       ...state,
