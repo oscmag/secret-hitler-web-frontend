@@ -23,16 +23,6 @@ export const app = (state = initialAppState.app, action) => {
       ...state,
       ...action.input,
     };
-    case 'server_alert':
-    return {
-      ...state,
-      serverAlert: action.alert,
-    };
-    case 'server_error':
-    return {
-      ...state,
-      serverError: action.error,
-    };
     default:
       return state;
   }
