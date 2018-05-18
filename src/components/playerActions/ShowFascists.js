@@ -40,12 +40,11 @@ class ShowFascists extends React.Component {
 
   render() {
     const avatars = this.importAvatars(require.context('../../../public/assets/avatars', false, /\.(png|jpe?g|svg)$/));
-    const { game, user } = this.props;
+    const { game, player, user } = this.props;
     const fascists = game.playerList.filter(player => {
       return player.faction === 'fascist' && player.user.id !== user.id;
     });
-    const playerFaction = game.playerList.find(player => player.user.id !== user.id).faction;
-    if (playerFaction === 'fascist') {
+    if (player.faction === 'fascist') {
       return (
         <React.Fragment>
           <h2>These are your fellow fascists</h2>
