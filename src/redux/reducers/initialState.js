@@ -1,11 +1,11 @@
-import { user, game} from './mocks';
+import { user, game } from './mocks';
 
-const initUser = true;
+const initUser = false;
 const initGame = false;
 
 export default {
   app: {
-    gameId: 'xwfKQKPk0kK_tpxPAABy',
+    gameId: '',
     modals: {
       rules: false,
       settings: false,
@@ -14,5 +14,5 @@ export default {
     }
   },
   game: initGame ? game : {},
-  user: initUser ? user : {},
+  user: initUser ? user : {id: '', name: '', avatar: ''},
 };

@@ -52,8 +52,8 @@ class WaitingRoom extends React.Component {
           <button name='leave' onClick={this.handleMetaClick}>Leave Game</button>
           <button name='rules' onClick={this.props.toggleModal} disabled={modals.rules}>Rules</button>
         </div>
-        {game.playerList && <PlayerList playerList={game.playerList}/>}
-        <Modal name='rules' closeButton>
+        {game.playerList && <PlayerList playerList={game.playerList} user={user}/>}
+        <Modal name='rules' closeButton closeOnClickOutside>
           <Rules/>
         </Modal>
       </div>

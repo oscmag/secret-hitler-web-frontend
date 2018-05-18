@@ -18,7 +18,7 @@ export default (props) => {
     player && <div className='player-list-item'>
       <img src={avatars[player.user.avatar]} alt='User Avatar'/>
       <div className={classes.join(' ')}>
-        {player.user.id === user.id && <p>You</p>}
+        {player.user && user && player.user.id === user.id && <p>You</p>}
         <h2>{player.user.name}</h2>
         {player.faction === 'fascist' && <p>{player.faction}</p>}
         {/* {user.games.played && <p><span>Games played</span> {user.games.played}</p>}

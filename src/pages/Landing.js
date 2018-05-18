@@ -47,7 +47,7 @@ class LandingPage extends React.Component {
   render() {
     const avatars = this.importAvatars(require.context('../../public/assets/avatars', false, /\.(png|jpe?g|svg)$/));
     const { app, user } = this.props;
-    const disabled = user.name.length < 3 || !user.avatar;
+    const disabled = (user.name && user.name.length < 3) || !user.avatar;
     return (
       <div id='landing-page'>
         <form>
