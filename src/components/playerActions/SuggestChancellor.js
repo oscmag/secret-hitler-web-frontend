@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { socketEmit, toggleModal } from '../../redux/actions';
+import './SuggestChancellor.css';
 
 class SuggestChancellor extends React.Component {
 

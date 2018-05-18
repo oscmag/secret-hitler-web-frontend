@@ -84,7 +84,7 @@ class LandingPage extends React.Component {
               value={app.gameId}
             />
             <button type='button' onClick={this.handleJoinClick}
-              disabled={!app.gameId || app.gameId.length !== 20 ||  disabled}>
+              disabled={!app.gameId || app.gameId.length !== 20 || disabled}>
               Join Game
             </button>
           </div>

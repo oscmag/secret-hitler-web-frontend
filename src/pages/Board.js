@@ -30,7 +30,7 @@ class Board extends React.Component {
   render() {
     const { game, modals, user } = this.props;
     if (!game || !game.playerList) return null;
-    const PlayerAction = playerActions[game.message];
+    const PlayerAction = playerActions[game.message] || 'div';
     const player = game.playerList.find(player => player.user.id === user.id);
     return (
       <div id='board'>

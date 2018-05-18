@@ -1,13 +1,12 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Router, Switch, Route } from 'react-router-dom';
 
 import LandingPage from './pages/Landing';
 import WaitingRoom from './pages/WaitingRoom';
 import Board from './pages/Board';
 import PageNotFound from './pages/PageNotFound';
-import './App.css';
 import history from './redux/history';
+import './App.css';
 
 export default class App extends React.Component {
 
