@@ -1,0 +1,12 @@
+.modal .eligible-players {
+  display: flex;
+}
+
+.modal .eligible-player {
+  padding: 1rem;
+  text-align: center;
+}
+
+.modal .eligible-players img {
+  width: 7rem;
+}
