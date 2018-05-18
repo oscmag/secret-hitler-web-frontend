@@ -7,7 +7,8 @@ import './Modal.css';
 class Modal extends React.Component {
 
   componentWillMount() {
-    document.addEventListener('mousedown', this.handleClickOutside);
+    this.props.closeOnClickOutside
+      && document.addEventListener('mousedown', this.handleClickOutside);
   }
 
   componentWillUnmount() {
@@ -20,19 +21,21 @@ class Modal extends React.Component {
   }
 
   render() {
-    const {modals, name, button, toggleModal, children} = this.props;
+    const {modals, name, closebutton, toggleModal, children} = this.props;
     if (!modals[name]) return null;
     return (
       <div ref={node => this.node = node} className="modal">
-        {button === 'close' && <button className='close-button' onClick={toggleModal}>&#10005;</button>}
+        {closebutton &&
+          <button className='close-button' onClick={toggleModal}>
+            &#10005;
+          </button>}
         {children}
-        {button === 'okay' && <button className='okay-button' onClick={toggleModal}>Okay</button>}
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   return {
     modals: state.app.modals,
   };

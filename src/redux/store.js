@@ -1,20 +1,25 @@
-import { createStore, applyMiddleware, compose } from 'redux';
+import { combineReducers, createStore, applyMiddleware, compose } from 'redux';
+import { reducer as notifReducer } from 'redux-notifications';
 
-import reducers from './reducers';
+import * as reducers from './reducers';
 import socketCreator from './middlewares/socket';
-import { loadState, saveState } from './localStorage';
+import router from './middlewares/router';
+// import { loadState, saveState } from './localStorage';
 
-const persistedState = loadState();
+// const persistedState = loadState();
 
 const socket = socketCreator(process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000');
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
-  reducers,
-  persistedState,
-  composeEnhancers(applyMiddleware(socket))
+  combineReducers({
+    notifs: notifReducer,
+    ...reducers,
+  }),
+  // persistedState,
+  composeEnhancers(applyMiddleware(socket, router))
 );
 
-store.subscribe(() => saveState(store.getState()));
+// store.subscribe(() => saveState(store.getState()));
 
 export default store;

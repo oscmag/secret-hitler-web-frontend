@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import uuid from 'uuid/v4';
 
-import { socketEvent, updateGameId, updateUser } from '../redux/actions';
+import { socketEmit, updateGameId, updateUser } from '../redux/actions';
 import './Landing.css'
 
 class LandingPage extends React.Component {
@@ -29,13 +29,19 @@ class LandingPage extends React.Component {
     return require.keys().map(require);
   };
 
-  handleMetaClick = (event) => {
-    const { app, user } = this.props;
-    this.props.socketEvent({
-      type: event.target.name + 'Game',
-      payload: {user, gameId: app.gameId}
+  handleCreateClick = () => {
+    this.props.socketEmit({
+      type: 'createGame',
+      payload: { user: this.props.user }
     });
-    this.props.history.push('/waiting-room');
+  };
+
+  handleJoinClick = () => {
+    const { app, user } = this.props;
+    this.props.socketEmit({
+      type: 'joinGame',
+      payload: { user, gameId: app.gameId }
+    });
   };
 
   render() {
@@ -44,8 +50,7 @@ class LandingPage extends React.Component {
     const disabled = user.name.length < 3 || !user.avatar;
     return (
       <div id='landing-page'>
-        <div className='background-overlay'>
-          <div className='meta-buttons'>
+        <form>
           <h2>Pick your avatar and user name</h2>
           <div className="avatar-carousel">
             {avatars.map((avatar, index) => (
@@ -60,6 +65,7 @@ class LandingPage extends React.Component {
               </div>
             ))}
           </div>
+          <div className="buttons">
             <input
               placeholder='User Name'
               name='name'
@@ -67,7 +73,7 @@ class LandingPage extends React.Component {
               onChange={this.updateUser}
               value={user.name}
             />
-            <button name='create' onClick={this.handleMetaClick} disabled={disabled}>
+            <button type='button' onClick={this.handleCreateClick} disabled={disabled}>
               Create Game
             </button>
             <input
@@ -77,12 +83,12 @@ class LandingPage extends React.Component {
               onChange={this.updateGameId}
               value={app.gameId}
             />
-            <button name='join' onClick={this.handleMetaClick}
-              disabled={!app.gameId || app.gameId.length !== 20 || disabled}>
+            <button type='button' onClick={this.handleJoinClick}
+              disabled={!app.gameId || app.gameId.length !== 20 || disabled}>
               Join Game
             </button>
           </div>
-        </div>
+        </form>
       </div>
     );
   }
@@ -97,7 +103,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  socketEvent: (data) => dispatch(socketEvent(data)),
+  socketEmit: (data) => dispatch(socketEmit(data)),
   updateGameId: (input) => dispatch(updateGameId(input)),
   updateUser: (input) => dispatch(updateUser(input)),
 })

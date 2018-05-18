@@ -1,4 +1,7 @@
 import io from 'socket.io-client';
+import { actions as notifActions } from 'redux-notifications';
+
+const { notifSend } = notifActions;
 
 const socket = url => store => {
   const socket = io(url);
@@ -14,10 +17,11 @@ const socket = url => store => {
   socket.on('message', message => {
     const {type, text} = message;
     console.log(`server ${type}: ${text}`);
-    store.dispatch({
-      type: 'server_' + type,
-      text,
-    });
+    notifSend({
+      message: text,
+      kind: 'info',
+      dismissAfter: 3000,
+    })(store.dispatch);
   });
 
   return next => action => {

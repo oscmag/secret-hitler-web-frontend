@@ -40,3 +40,32 @@ button {
 button:disabled {
   background: var(--main-gray);
 }
+
+.notif__message {
+  z-index: 3;
+  position: absolute;
+  left: 50%;
+  top: 1rem;
+  background: black;
+  padding: 0.5rem;
+  border-radius: 0.2rem;
+  transform: translate(-50%);
+}
+
+.notif-transition-enter {
+  opacity    : 0.01;
+  transition : opacity 1s ease-in;
+}
+
+.notif-transition-enter-active {
+  opacity : 1;
+}
+
+.notif-transition-leave {
+  opacity    : 1;
+  transition : opacity 1s ease-in;
+}
+
+.notif-transition-leave-active {
+  opacity : 0.01;
+}

@@ -1,0 +1,12 @@
+.modal .fascists {
+  display: flex;
+}
+
+.modal .fascist {
+  padding: 1rem;
+  text-align: center;
+}
+
+.modal .fascists img {
+  width: 7rem;
+}
