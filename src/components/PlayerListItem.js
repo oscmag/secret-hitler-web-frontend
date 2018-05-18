@@ -7,7 +7,7 @@ const importAvatars = (require) => {
 };
 
 export default (props) => {
-  const { player, player: { user } } = props;
+  const { player, user } = props;
   const classes = [
     player.president ? 'president' : null,
     player.chancellor ? 'chancellor' : null,
@@ -15,10 +15,11 @@ export default (props) => {
   ];
   const avatars = importAvatars(require.context('../../public/assets/avatars', false, /\.(png|jpe?g|svg)$/));
   return (
-    user && <div className='player-list-item'>
-      <img src={avatars[user.avatar]} alt='user avatar'/>
+    player && <div className='player-list-item'>
+      <img src={avatars[player.user.avatar]} alt='User Avatar'/>
       <div className={classes.join(' ')}>
-        <h2>{user.name}</h2>
+        {player.user.id === user.id && <p>You</p>}
+        <h2>{player.user.name}</h2>
         {player.faction === 'fascist' && <p>{player.faction}</p>}
         {/* {user.games.played && <p><span>Games played</span> {user.games.played}</p>}
         {user.games.won && <p><span>Games won</span> {user.games.won}</p>}
