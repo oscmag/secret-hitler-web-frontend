@@ -29,13 +29,19 @@ class LandingPage extends React.Component {
     return require.keys().map(require);
   };
 
-  handleMetaClick = (event) => {
+  handleCreateClick = () => {
+    this.props.socketEmit({
+      type: 'createGame',
+      payload: { user: this.props.user }
+    });
+  };
+
+  handleJoinClick = () => {
     const { app, user } = this.props;
     this.props.socketEmit({
-      type: event.target.name + 'Game',
-      payload: {user, gameId: app.gameId}
+      type: 'joinGame',
+      payload: { user, gameId: app.gameId }
     });
-    this.props.history.push('/waiting-room');
   };
 
   render() {
@@ -44,8 +50,7 @@ class LandingPage extends React.Component {
     const disabled = user.name.length < 3 || !user.avatar;
     return (
       <div id='landing-page'>
-        <div className='background-overlay'>
-          <div className='meta-buttons'>
+        <form>
           <h2>Pick your avatar and user name</h2>
           <div className="avatar-carousel">
             {avatars.map((avatar, index) => (
@@ -60,6 +65,7 @@ class LandingPage extends React.Component {
               </div>
             ))}
           </div>
+          <div className="buttons">
             <input
               placeholder='User Name'
               name='name'
@@ -67,7 +73,7 @@ class LandingPage extends React.Component {
               onChange={this.updateUser}
               value={user.name}
             />
-            <button name='create' onClick={this.handleMetaClick} disabled={disabled}>
+            <button type='button' onClick={this.handleCreateClick} disabled={disabled}>
               Create Game
             </button>
             <input
@@ -77,12 +83,12 @@ class LandingPage extends React.Component {
               onChange={this.updateGameId}
               value={app.gameId}
             />
-            <button name='join' onClick={this.handleMetaClick}
-              disabled={!app.gameId || app.gameId.length !== 20 || disabled}>
+            <button type='button' onClick={this.handleJoinClick}
+              disabled={!app.gameId || app.gameId.length !== 20 ||  disabled}>
               Join Game
             </button>
           </div>
-        </div>
+        </form>
       </div>
     );
   }
