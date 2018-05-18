@@ -24,7 +24,7 @@ class SuggestChancellor extends React.Component {
     const avatars = this.importAvatars(require.context('../../../public/assets/avatars', false, /\.(png|jpe?g|svg)$/));
     const { game, user } = this.props;
     const eligiblePlayers = game.playerList.filter(player => !player.president);
-    const isPresident = game.playerList.find(player => player.user.id !== user.id).president;
+    const isPresident = game.playerList.find(player => player.user.id === user.id).president;
     if (isPresident) {
       return (
         <React.Fragment>
