@@ -6,8 +6,18 @@ import Modal from '../components/Modal';
 import PlayerList from '../components/PlayerList';
 import Policy from '../components/Policy';
 import Rules from '../components/Rules';
-import ShowRoles from '../components/player.actions/ShowRoles';
-import './Board.css'
+import ShowRoles from '../components/playerActions/ShowRoles';
+import ShowFascists from '../components/playerActions/ShowFascists';
+import ShowPresident from '../components/playerActions/ShowPresident';
+import SuggestChancellor from '../components/playerActions/SuggestChancellor';
+import './Board.css';
+
+const playerActions = {
+  showRoles: ShowRoles,
+  showFascists: ShowFascists,
+  showPresident: ShowPresident,
+  suggestChancellor: SuggestChancellor,
+};
 
 class Board extends React.Component {
 
@@ -19,6 +29,9 @@ class Board extends React.Component {
 
   render() {
     const { game, modals, user } = this.props;
+    if (!game || !game.playerList) return null;
+    const PlayerAction = playerActions[game.message];
+    const player = game.playerList.find(player => player.user.id === user.id);
     return (
       <div id='board'>
         <div>
@@ -26,7 +39,7 @@ class Board extends React.Component {
             <button name='rules' onClick={this.props.toggleModal} disabled={modals.rules}>Rules</button>
             <button name='settings' onClick={this.props.toggleModal}>Settings</button>
           </div>
-          {game.playerList && <PlayerList playerList={game.playerList}/>}
+          {game.playerList && <PlayerList playerList={game.playerList} user={user}/>}
         </div>
         <div className="board">
           <div className="liberal-board">
@@ -65,11 +78,11 @@ class Board extends React.Component {
             </div>
           </div>
         </div>
-        <Modal name='rules' button='okay'>
+        <Modal name='rules' button='okay' closeOnClickOutside>
           <Rules/>
         </Modal>
-        <Modal name='showRoles' button='close'>
-          <ShowRoles player={game.playerList.find(player => player.user.id === user.id)}/>
+        <Modal name={game.message}>
+          <PlayerAction game={game} player={player} user={user}/>
         </Modal>
       </div>
     );
