@@ -22,7 +22,7 @@ The project is still in development.
 
 
 
-![chancellor](https://i.imgur.com/iNq0W5G.png)
+![chancellor](https://i.imgur.com/0tlkV41.png)
 
 
 
