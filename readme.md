@@ -65,3 +65,7 @@ Janosh Riebesell and Oscar Magnusson.
 ## Licence
 
 This project is licensed under the MIT License.
+=======
+## [Back End Repo](https://github.com/Janosh/secret-hitler-backend)
+
+Uses Socket.IO and in-memory storage for real-time communication.
